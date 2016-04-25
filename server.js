@@ -16,8 +16,8 @@ app.get('/scrape', function(req, res){
 
       json.title = $('.title_wrapper h1').text().replace(/\u00A0/g, '').trim();
       json.rating = $('meta[itemprop="contentRating"]').attr('content');
-      // json.duration = $('time[itemprop="duration"]').children();
-      console.log($('time[itemprop="duration"]').children());
+      json.release = $('meta[itemprop="datePublished"]').attr('content');
+      json.duration = $('time').first().text().trim();
       res.json(json);
     }
   })
