@@ -2,6 +2,8 @@ var express = require('express');
 var fs = require('fs');
 var request = require('request');
 var cheerio = require('cheerio');
+var moment = require('moment');
+moment().format();
 var app     = express();
 
 app.get('/scrape', function(req, res){
@@ -16,7 +18,8 @@ app.get('/scrape', function(req, res){
 
       json.title = $('.title_wrapper h1').text().replace(/\u00A0/g, '').trim();
       json.rating = $('meta[itemprop="contentRating"]').attr('content');
-      json.release = $('meta[itemprop="datePublished"]').attr('content');
+      var releaseDate = $('meta[itemprop="datePublished"]').attr('content');
+      json.release = moment(releaseDate).format("DD MMMM, Y");
       json.duration = $('time').first().text().trim();
       res.json(json);
     }

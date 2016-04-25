@@ -1,2 +1,2 @@
 # Node_Webscraper
-Simple web scraper experiment
+Simple IDDB web scraper experiment
